@@ -3,6 +3,7 @@ from flask import Flask, render_template, request
 import siteDB as dbClient
 import json
 
+DB_FILE = 
 app = Flask(__name__)
 
 
