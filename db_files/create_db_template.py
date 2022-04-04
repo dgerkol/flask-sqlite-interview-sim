@@ -44,7 +44,9 @@ def init_db(db_dir = './init_db'):
                     ( "ticket_id" INTEGER UNIQUE, 
                     "user_id" INTEGER NOT NULL UNIQUE, 
                     "flight_id" INTEGER NOT NULL, 
-                    PRIMARY KEY("ticket_id"), 
+                    PRIMARY KEY("ticket_id"),
+                    FOREIGN KEY("user_id")
+                    REFERENCES "users"("id_AI"), 
                     FOREIGN KEY("flight_id") 
                     REFERENCES "flights"("flight_id") );
                     ''')
@@ -55,9 +57,7 @@ def init_db(db_dir = './init_db'):
                     "full_name" TEXT NOT NULL, 
                     "password" TEXT NOT NULL, 
                     "real_id" TEXT NOT NULL UNIQUE, 
-                    PRIMARY KEY("id_AI" AUTOINCREMENT), 
-                    FOREIGN KEY("id_AI") 
-                    REFERENCES "tickets"("user_id") );
+                    PRIMARY KEY("id_AI" AUTOINCREMENT)  );
                     ''')
     conn.commit()
     
