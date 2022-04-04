@@ -30,6 +30,38 @@ def createUser(name: str, password: str, uid: str):
                                 VALUES
                                 ("{name}", "{password}", "{uid}");
                             ''')
+    # if db operation was successful
+    if res[0]:
+        #return (operation success) 
+        return (True)
+    # else return (operation fail, sqlite type error)
+    return (False, res[1])
+
+
+def updateUser(uid: int, cell: str, data):
+    res = insertDB(DB_FILE, f'''UPDATE users 
+                                SET {cell} = "{data}" 
+                                WHERE id_AI = "{uid}"
+                            ''')
+    # if db operation was successful
+    if res[0]:
+        #return (operation success) 
+        return (True)
+    # else return (operation fail, sqlite type error)
+    return (False, res[1])
+
+
+def deleteUser(uid: int):
+    res = insertDB(DB_FILE, f'''DELETE FROM users 
+                                WHERE id_AI = "{uid}";
+                            ''')
+    # if db operation was successful
+    if res[0]:
+        #return (operation success) 
+        return (True)
+    # else return (operation fail, sqlite type error)
+    return (False, res[1])
+
 
 #* tickets table requests *#
 
@@ -56,6 +88,37 @@ def createTicket(uid: int, fid: int):
                                 VALUES
                                 ({uid}, {fid});
                             ''')
+    # if db operation was successful
+    if res[0]:
+        #return (operation success) 
+        return (True)
+    # else return (operation fail, sqlite type error)
+    return (False, res[1])
+
+
+def updateTicket(tid: int, cell: str, data):
+    res = insertDB(DB_FILE, f'''UPDATE tickets 
+                                SET {cell} = "{data}" 
+                                WHERE ticket_id = "{tid}";
+                            ''')
+    # if db operation was successful
+    if res[0]:
+        #return (operation success) 
+        return (True)
+    # else return (operation fail, sqlite type error)
+    return (False, res[1])
+
+
+def deleteTicket(tid: int):
+    res = insertDB(DB_FILE, f'''DELETE FROM tickets 
+                                WHERE ticket_id = "{tid}";
+                            ''')
+    # if db operation was successful
+    if res[0]:
+        #return (operation success) 
+        return (True)
+    # else return (operation fail, sqlite type error)
+    return (False, res[1])
 
 
 #* flights table requests *#
@@ -73,7 +136,7 @@ def selectFlight(fid = None):
         userList = [Flight(col[0], col[1], col[2], col[3], col[4]).data for col in res[1]]
         #return (query success, flights dict) 
         return (True, userList)
-    #return (query fail, sqlite type error)
+    # return (query fail, sqlite type error)
     return (False, res[1])
 
 
@@ -83,6 +146,39 @@ def createFlight(timestamp: str, seats: int, orig: int, dest: int):
                                 VALUES
                                 ("{timestamp}", {seats}, {orig}, {dest});
                             ''')
+    # if db operation was successful
+    if res[0]:
+        #return (operation success) 
+        return (True)
+    # else return (operation fail, sqlite type error)
+    return (False, res[1])
+
+
+def updateFlight(fid: int, cell: str, data):
+    res = insertDB(DB_FILE, f'''UPDATE flights 
+                                SET {cell} = "{data}" 
+                                WHERE flight_id = "{fid}";
+                            ''')
+    # if db operation was successful
+    if res[0]:
+        #return (operation success) 
+        return (True)
+    # else return (operation fail, sqlite type error)
+    return (False, res[1])
+
+
+def deleteFlight(fid: int):
+    res = insertDB(DB_FILE, f'''DELETE FROM flights 
+                                WHERE flight_id = "{fid}";
+                            ''')
+    # if db operation was successful
+    if res[0]:
+        #return (operation success) 
+        return (True)
+    # else return (operation fail, sqlite type error)
+    return (False, res[1])
+
+
 #* countries table requests *#
 
 def selectCountry(cid = None):
@@ -108,3 +204,34 @@ def createCountry(name):
                                 VALUES
                                 ("{name}");
                             ''')
+    # if db operation was successful
+    if res[0]:
+        #return (operation success) 
+        return (True)
+    # else return (operation fail, sqlite type error)
+    return (False, res[1])
+
+
+def updateCountry(cid: int, cell: str, data):
+    res = insertDB(DB_FILE, f'''UPDATE countries 
+                                SET {cell} = "{data}" 
+                                WHERE code_AI = "{cid}";
+                            ''')
+    # if db operation was successful
+    if res[0]:
+        #return (operation success) 
+        return (True)
+    # else return (operation fail, sqlite type error)
+    return (False, res[1])
+
+
+def deleteCountry(cid: int):
+    res = insertDB(DB_FILE, f'''DELETE FROM countries 
+                                WHERE code_AI = "{cid}";
+                            ''')
+    # if db operation was successful
+    if res[0]:
+        #return (operation success) 
+        return (True)
+    # else return (operation fail, sqlite type error)
+    return (False, res[1])
