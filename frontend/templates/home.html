@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Site DB web UI</title>
+</head>
+
+<body bgcolor="#BCF9FF">
+    
+    <h1>DB management web UI simulator</h1>
+        <h3>This webpage lets you manage DB tables using a primitive GUI</h3>
+        <p>
+            • All DB operations support REST API requests.
+            <br>
+            • You may also use REST clients such as <b>Postman</b> or <b>Curl</b> if you wish,
+            <a href="https://github.com/dgerkol/flask-sqlite-prj">see code documentation</a> for a full list of supported urls.
+        </p>
+    <p><br></p>
+    <h3>Simulate user operations</h3>
+        <p>Simulate DB operations as a website user:</p>
+        <form style="display:inline-block; width:80px" action="http://127.0.0.1:5000/login" method="get">
+            <button type="submit"> Login </button>
+        </form>
+        <form style="display:inline-block" action="http://127.0.0.1:5000/signup" method="get">
+            <button type="submit"> Sign up </button>
+        </form>
+    <p><br></p>
+    <h3>Direct DB query</h3>
+        <p>query DB tables directly:</p>
