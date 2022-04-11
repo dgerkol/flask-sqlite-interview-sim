@@ -1,5 +1,5 @@
-from DBclient import *
-from processDBoutput import *
+from backend.DBclient import *
+from backend.processDBoutput import *
 
 DB_FILE='db_files/init_db'
 
@@ -33,7 +33,7 @@ def createUser(name: str, password: str, uid: str):
     # if db operation was successful
     if res[0]:
         #return (operation success) 
-        return (True)
+        return (True, True)
     # else return (operation fail, sqlite type error)
     return (False, res[1])
 
@@ -46,7 +46,7 @@ def updateUser(uid: int, cell: str, data):
     # if db operation was successful
     if res[0]:
         #return (operation success) 
-        return (True)
+        return (True, True)
     # else return (operation fail, sqlite type error)
     return (False, res[1])
 
@@ -58,7 +58,7 @@ def deleteUser(uid: int):
     # if db operation was successful
     if res[0]:
         #return (operation success) 
-        return (True)
+        return (True, True)
     # else return (operation fail, sqlite type error)
     return (False, res[1])
 
@@ -75,9 +75,9 @@ def selectTicket(tid = None):
     # if db query was successful
     # process tickets table records to list of tickets
     if res[0]:
-        userList = [Ticket(col[0], col[1], col[2]).data for col in res[1]]
+        ticketList = [Ticket(col[0], col[1], col[2]).data for col in res[1]]
         #return (query success, tickets dict) 
-        return (True, userList)
+        return (True, ticketList)
     #return (query fail, sqlite type error)
     return (False, res[1])
 
@@ -91,7 +91,7 @@ def createTicket(uid: int, fid: int):
     # if db operation was successful
     if res[0]:
         #return (operation success) 
-        return (True)
+        return (True, True)
     # else return (operation fail, sqlite type error)
     return (False, res[1])
 
@@ -104,7 +104,7 @@ def updateTicket(tid: int, cell: str, data):
     # if db operation was successful
     if res[0]:
         #return (operation success) 
-        return (True)
+        return (True, True)
     # else return (operation fail, sqlite type error)
     return (False, res[1])
 
@@ -116,7 +116,7 @@ def deleteTicket(tid: int):
     # if db operation was successful
     if res[0]:
         #return (operation success) 
-        return (True)
+        return (True, True)
     # else return (operation fail, sqlite type error)
     return (False, res[1])
 
@@ -133,9 +133,9 @@ def selectFlight(fid = None):
     # if db query was successful
     # process flights table records to list of flights
     if res[0]:
-        userList = [Flight(col[0], col[1], col[2], col[3], col[4]).data for col in res[1]]
+        flightList = [Flight(col[0], col[1], col[2], col[3], col[4]).data for col in res[1]]
         #return (query success, flights dict) 
-        return (True, userList)
+        return (True, flightList)
     # return (query fail, sqlite type error)
     return (False, res[1])
 
@@ -149,7 +149,7 @@ def createFlight(timestamp: str, seats: int, orig: int, dest: int):
     # if db operation was successful
     if res[0]:
         #return (operation success) 
-        return (True)
+        return (True, True)
     # else return (operation fail, sqlite type error)
     return (False, res[1])
 
@@ -162,7 +162,7 @@ def updateFlight(fid: int, cell: str, data):
     # if db operation was successful
     if res[0]:
         #return (operation success) 
-        return (True)
+        return (True, True)
     # else return (operation fail, sqlite type error)
     return (False, res[1])
 
@@ -174,7 +174,7 @@ def deleteFlight(fid: int):
     # if db operation was successful
     if res[0]:
         #return (operation success) 
-        return (True)
+        return (True, True)
     # else return (operation fail, sqlite type error)
     return (False, res[1])
 
@@ -191,9 +191,9 @@ def selectCountry(cid = None):
     # if db query was successful
     # process countries table records to list of countries
     if res[0]:
-        userList = [Country(col[0], col[1]).data for col in res[1]]
+        countryList = [Country(col[0], col[1]).data for col in res[1]]
         #return (query success, countries dict) 
-        return (True, userList)
+        return (True, countryList)
     #return (query fail, sqlite type error)
     return (False, res[1])
 
@@ -207,7 +207,7 @@ def createCountry(name):
     # if db operation was successful
     if res[0]:
         #return (operation success) 
-        return (True)
+        return (True, True)
     # else return (operation fail, sqlite type error)
     return (False, res[1])
 
@@ -220,7 +220,7 @@ def updateCountry(cid: int, cell: str, data):
     # if db operation was successful
     if res[0]:
         #return (operation success) 
-        return (True)
+        return (True, True)
     # else return (operation fail, sqlite type error)
     return (False, res[1])
 
@@ -232,6 +232,6 @@ def deleteCountry(cid: int):
     # if db operation was successful
     if res[0]:
         #return (operation success) 
-        return (True)
+        return (True, True)
     # else return (operation fail, sqlite type error)
     return (False, res[1])
