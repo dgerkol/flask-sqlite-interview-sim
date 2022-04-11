@@ -1,0 +1,4 @@
+db_files/init_db
+backend/__pycache__
+frontend/__pycache__
+__pycache__

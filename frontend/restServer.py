@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, jsonify
+from envConstants import REST_LOG
 import backend.DBquery as db
-import json
 import logging
 
 

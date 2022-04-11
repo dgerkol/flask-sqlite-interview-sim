@@ -1,4 +1,5 @@
 import sqlite3
+from envConstants import DB_CLIENT_LOG
 
 
 def connClose(conn):

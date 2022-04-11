@@ -1,7 +1,5 @@
 import frontend.restServer as server
-DB_FILE = 'db_files/init_db'
-LOGS_DIR = 'logs'
-
+from envConstants import SITE_LOG
 
 
 if __name__ == '__main__':

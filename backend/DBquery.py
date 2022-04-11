@@ -1,7 +1,7 @@
 from backend.DBclient import *
 from backend.processDBoutput import *
+from envConstants import DB_FILE, DB_QUERY_LOG
 
-DB_FILE='db_files/init_db'
 
 #* Handle DB operatrions *#
 
