@@ -18,9 +18,11 @@ def selectUser(uid = None):
     # process users table records to list of users
     if res[0]:
         userList = [User(col[0], col[1], col[2], col[3]).data for col in res[1]]
-        #return (query success, user dict) 
+        #return (query success, user dict)
+        connClose(res[2])
         return (True, userList)
     #return (query fail, sqlite type error)
+    connClose(res[2])
     return (False, res[1])
 
 
@@ -32,9 +34,11 @@ def createUser(name: str, password: str, uid: str):
                             ''')
     # if db operation was successful
     if res[0]:
-        #return (operation success) 
+        #return (operation success)
+        commitOpp(res[2])
         return (True, True)
     # else return (operation fail, sqlite type error)
+    connClose(res[2])
     return (False, res[1])
 
 
@@ -45,9 +49,11 @@ def updateUser(uid: int, cell: str, data):
                             ''')
     # if db operation was successful
     if res[0]:
-        #return (operation success) 
+        #return (operation success)
+        commitOpp(res[2]) 
         return (True, True)
     # else return (operation fail, sqlite type error)
+    connClose(res[2])
     return (False, res[1])
 
 
@@ -57,9 +63,11 @@ def deleteUser(uid: int):
                             ''')
     # if db operation was successful
     if res[0]:
-        #return (operation success) 
+        #return (operation success)
+        commitOpp(res[2]) 
         return (True, True)
     # else return (operation fail, sqlite type error)
+    connClose(res[2])
     return (False, res[1])
 
 
@@ -76,9 +84,11 @@ def selectTicket(tid = None):
     # process tickets table records to list of tickets
     if res[0]:
         ticketList = [Ticket(col[0], col[1], col[2]).data for col in res[1]]
-        #return (query success, tickets dict) 
+        #return (query success, tickets dict)
+        connClose(res[2]) 
         return (True, ticketList)
     #return (query fail, sqlite type error)
+    connClose(res[2])
     return (False, res[1])
 
 
@@ -90,9 +100,11 @@ def createTicket(uid: int, fid: int):
                             ''')
     # if db operation was successful
     if res[0]:
-        #return (operation success) 
+        #return (operation success)
+        commitOpp(res[2]) 
         return (True, True)
     # else return (operation fail, sqlite type error)
+    connClose(res[2])
     return (False, res[1])
 
 
@@ -103,9 +115,11 @@ def updateTicket(tid: int, cell: str, data):
                             ''')
     # if db operation was successful
     if res[0]:
-        #return (operation success) 
+        #return (operation success)
+        commitOpp(res[2]) 
         return (True, True)
     # else return (operation fail, sqlite type error)
+    connClose(res[2])
     return (False, res[1])
 
 
@@ -115,9 +129,11 @@ def deleteTicket(tid: int):
                             ''')
     # if db operation was successful
     if res[0]:
-        #return (operation success) 
+        #return (operation success)
+        commitOpp(res[2]) 
         return (True, True)
     # else return (operation fail, sqlite type error)
+    connClose(res[2])
     return (False, res[1])
 
 
@@ -134,9 +150,11 @@ def selectFlight(fid = None):
     # process flights table records to list of flights
     if res[0]:
         flightList = [Flight(col[0], col[1], col[2], col[3], col[4]).data for col in res[1]]
-        #return (query success, flights dict) 
+        #return (query success, flights dict)
+        connClose(res[2]) 
         return (True, flightList)
     # return (query fail, sqlite type error)
+    connClose(res[2])
     return (False, res[1])
 
 
@@ -148,9 +166,11 @@ def createFlight(timestamp: str, seats: int, orig: int, dest: int):
                             ''')
     # if db operation was successful
     if res[0]:
-        #return (operation success) 
+        #return (operation success)
+        commitOpp(res[2]) 
         return (True, True)
     # else return (operation fail, sqlite type error)
+    connClose(res[2])
     return (False, res[1])
 
 
@@ -161,9 +181,11 @@ def updateFlight(fid: int, cell: str, data):
                             ''')
     # if db operation was successful
     if res[0]:
-        #return (operation success) 
+        #return (operation success)
+        commitOpp(res[2]) 
         return (True, True)
     # else return (operation fail, sqlite type error)
+    connClose(res[2])
     return (False, res[1])
 
 
@@ -173,9 +195,11 @@ def deleteFlight(fid: int):
                             ''')
     # if db operation was successful
     if res[0]:
-        #return (operation success) 
+        #return (operation success)
+        commitOpp(res[2]) 
         return (True, True)
     # else return (operation fail, sqlite type error)
+    connClose(res[2])
     return (False, res[1])
 
 
@@ -192,9 +216,11 @@ def selectCountry(cid = None):
     # process countries table records to list of countries
     if res[0]:
         countryList = [Country(col[0], col[1]).data for col in res[1]]
-        #return (query success, countries dict) 
+        #return (query success, countries dict)
+        connClose(res[2]) 
         return (True, countryList)
     #return (query fail, sqlite type error)
+    connClose(res[2])
     return (False, res[1])
 
 
@@ -206,9 +232,11 @@ def createCountry(name):
                             ''')
     # if db operation was successful
     if res[0]:
-        #return (operation success) 
+        #return (operation success)
+        commitOpp(res[2]) 
         return (True, True)
     # else return (operation fail, sqlite type error)
+    connClose(res[2])
     return (False, res[1])
 
 
@@ -219,9 +247,11 @@ def updateCountry(cid: int, cell: str, data):
                             ''')
     # if db operation was successful
     if res[0]:
-        #return (operation success) 
+        #return (operation success)
+        commitOpp(res[2]) 
         return (True, True)
     # else return (operation fail, sqlite type error)
+    connClose(res[2])
     return (False, res[1])
 
 
@@ -231,7 +261,9 @@ def deleteCountry(cid: int):
                             ''')
     # if db operation was successful
     if res[0]:
-        #return (operation success) 
+        #return (operation success)
+        commitOpp(res[2]) 
         return (True, True)
     # else return (operation fail, sqlite type error)
+    connClose(res[2])
     return (False, res[1])
