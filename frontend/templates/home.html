@@ -12,7 +12,9 @@
         <p>
             • All DB operations support REST API requests.
             <br>
-            • You may also use REST clients such as <b>Postman</b> or <b>Curl</b> if you wish,
+            • Use REST clients such as <b>Postman</b> or <b>Curl</b> to fully manage DB.
+            <br>
+            • JSON request <b>must include the exact table field names</b> and appropriate values!
             <a href="https://github.com/dgerkol/flask-sqlite-prj">see code documentation</a> for a full list of supported urls.
         </p>
     <p><br></p>
@@ -27,3 +29,10 @@
     <p><br></p>
     <h3>Direct DB query</h3>
         <p>query DB tables directly:</p>
+        <p>To query DB tables directly using web UI browse to a table name, for example:
+            <br>
+            • Get all users: /user
+            <br>
+            • Get ticket number 5: /ticket/5
+        <br>
+        </p>

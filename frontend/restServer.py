@@ -23,20 +23,20 @@ def runServer():
     def login():
         if request.method == 'GET':
             return render_template('login.html')
-        
-        user = request.form['user']
-        password = request.form['password']
-        
-        query = db.selectUser(webUI = True, uname = user)
-        
-        if query[0]:
-            if user == query[1][0]['name']:
-                if password == query[1][0]['password']:
-                    return render_template('loggedin.html')
-                else:
-                    return jsonify({"status": 403, "error": "Forbidden", "message": "Wrong username or password"})
         else:
-            return jsonify({"status": 403, "error": "Forbidden", "message": "Wrong username or password"})
+            user = request.form['user']
+            password = request.form['password']
+            
+            query = db.selectUser(webUI = True, uname = user)
+            
+            if query[0]:
+                if user == query[1][0]['name']:
+                    if password == query[1][0]['password']:
+                        return render_template('loggedin.html')
+                    else:
+                        return jsonify({"status": 403, "error": "Forbidden", "message": "Wrong username or password"})
+            else:
+                return jsonify({"status": 403, "error": "Forbidden", "message": "Wrong username or password"})
     
     
     #*    handle signup dirs    *#
