@@ -7,10 +7,12 @@ from envConstants import DB_FILE, DB_QUERY_LOG
 
 #* users table requests *#
 
-def selectUser(uid = None):
+def selectUser(uid = None, webUI = False, uname = None):
     
     if uid:
         res = queryDB(DB_FILE, f"SELECT * FROM users WHERE id_AI = {uid}")
+    elif webUI:
+        res = queryDB(DB_FILE, f'SELECT * FROM users WHERE full_name = "{uname}"')
     else:
         res = queryDB(DB_FILE, "SELECT * FROM users")
         

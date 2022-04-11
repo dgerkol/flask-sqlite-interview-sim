@@ -1,19 +1,55 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, render_template_string, request, jsonify
 from envConstants import REST_LOG
 import backend.DBquery as db
 import logging
 
 
 def runServer():
-    app = Flask(__name__, template_folder='frontend/templates')
+    app = Flask(__name__, template_folder='../frontend/templates')
     
+    
+    #*      handle web UI requests      *#
+    
+    #*    handle root dir    *#
     
     @app.route('/')
     def home():
         return render_template('home.html')
     
     
-    #*   handle user dir   *#
+    #*    handle login dir    *#
+    
+    @app.route('/login', methods = ['GET', 'POST'])
+    def login():
+        if request.method == 'GET':
+            return render_template('login.html')
+        
+        user = request.form['user']
+        password = request.form['password']
+        
+        query = db.selectUser(webUI = True, uname = user)
+        
+        if query[0]:
+            if user == query[1][0]['name']:
+                if password == query[1][0]['password']:
+                    return render_template('loggedin.html')
+                else:
+                    return jsonify({"status": 403, "error": "Forbidden", "message": "Wrong username or password"})
+        else:
+            return jsonify({"status": 403, "error": "Forbidden", "message": "Wrong username or password"})
+    
+    
+    #*    handle signup dirs    *#
+    
+    @app.route('/signup', methods = ['GET', 'POST'])
+    def signup():
+        return render_template('signup.html')
+    
+    
+    #*      handle REST API JSON requests      *#
+    
+    #*    handle user dirs    *#
+    
     @app.route('/user', methods = ['GET', 'POST'])
     def userDir():
         if request.method == 'GET':
@@ -69,7 +105,9 @@ def runServer():
                 return jsonify({"operation":"delete_user", "success":query[0], "error":query[1]})
     
     
-    #*   handle tickets dir   *#
+    
+    #*    handle tickets dirs    *#
+    
     @app.route('/tickets', methods = ['GET', 'POST'])
     def ticketDir():
         if request.method == 'GET':
@@ -123,7 +161,9 @@ def runServer():
                 return jsonify({"operation":"delete_ticket", "success":query[0], "error":query[1]})
     
     
-    #*   handle flights dir   *#
+    
+    #*    handle flights dirs    *#
+    
     @app.route('/flights', methods = ['GET', 'POST'])
     def flightDir():
         if request.method == 'GET':
@@ -178,7 +218,9 @@ def runServer():
                 return jsonify({"operation":"delete_flight", "success":query[0], "error":query[1]})
     
     
-    #*   handle countries dir   *#
+    
+    #*    handle countries dir    *#
+    
     @app.route('/countries', methods = ['GET', 'POST'])
     def countryDir():
         if request.method == 'GET':
