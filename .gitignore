@@ -2,3 +2,13 @@ db_files/init_db
 backend/__pycache__
 frontend/__pycache__
 __pycache__
+venv/lib/python3.10/site-packages/click/__pycache__/*
+venv/lib/python3.10/site-packages/flask/__pycache__/*
+venv/lib/python3.10/site-packages/itsdangerous/__pycache__/*
+venv/lib/python3.10/site-packages/jinja2/__pycache__/*
+venv/lib/python3.10/site-packages/markupsafe/__pycache__/*
+venv/lib/python3.10/site-packages/werkzeug/__pycache__/*
+venv/lib/python3.10/site-packages/werkzeug/debug/__pycache__/*
+venv/lib/python3.10/site-packages/werkzeug/sansio/__pycache__/*
+venv/lib/python3.10/site-packages/werkzeug/wrappers/__pycache__/*
+venv/lib/python3.10/site-packages/flask/json/__pycache__/*
